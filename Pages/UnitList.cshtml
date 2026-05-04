@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "/Units"
 @model WebApp.Pages.UnitListModel
 @{
 }
@@ -10,6 +10,13 @@
 </div>
 <div class="container">
 	<div class="row">
-
+		@foreach (var category in Model.SortedCategories) 
+		{
+			<p>@category</p>
+			@foreach (var unit in Model.Units.Where(u => u.Category == category))
+			{
+				<span>@unit.Name</span>
+			}
+		}
 	</div>
 </div>
