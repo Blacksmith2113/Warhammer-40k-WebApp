@@ -6,6 +6,9 @@
 <div class="row">
 		<div class="col-12">
 			<!-- Page title -->
+					<a asp-page="/UnitList" rel="tooltip">
+						<i class="material-symbols-outlined">arrow_back</i>
+					</a>
 			<div class="my-5">
 				<h3>Create new Unit</h3>
 				<hr>
@@ -13,7 +16,7 @@
 			<!-- Form START -->
 			<form class="file-upload">
 				<div class="row mb-5 gx-5">
-					<!-- Upload profile -->
+					<!-- Upload Image -->
 					<div class="col-xxl-4">
 						<div class="bg-secondary-soft px-4 py-5 rounded h-100">
 							<div class="row g-3">
@@ -31,48 +34,44 @@
 							</div>
 						</div>
 					</div>
-					<!-- Contact detail -->
+					<!-- Unit Information -->
 					<div class="col-xxl-8 mb-5 mb-xxl-0">
 						<div class="bg-secondary-soft px-4 py-5 rounded  h-100">
 							<div class="row g-3">
-								<h4 class="mb-4 mt-0">Contact detail</h4>
-								<!-- First Name -->
+								<h4 class="mb-4 mt-0">Unit Information</h4>
+								<!-- Name -->
 								<div class="col-md-6">
-									<label class="form-label">First Name *</label>
-									<input type="text" class="form-control" placeholder="" aria-label="First name" value="Scaralet">
+									<label class="form-label">Name</label>
+									<input type="text" class="form-control" placeholder="" aria-label="First name">
 								</div>
-								<!-- Last name -->
+								<!-- Points -->
 								<div class="col-md-6">
-									<label class="form-label">Last Name *</label>
-									<input type="text" class="form-control" placeholder="" aria-label="Last name" value="Doe">
+									<label class="form-label">Point Value</label>
+									<input type="text" class="form-control" placeholder="" aria-label="Last name">
 								</div>
-								<!-- Phone number -->
+								<!--Category-->
 								<div class="col-md-6">
-									<label class="form-label">Phone number *</label>
-									<input type="text" class="form-control" placeholder="" aria-label="Phone number" value="(333) 000 555">
+									<label class="form-label">Category</label>
+									<select class="form-select">
+										<option selected disabled value="">Select Category</option>
+										<option value="1">Character</option>
+										<option value="2">Battleline</option>
+										<option value="3">Dedicated Transport</option>
+										<option value="4">Other Datasheets</option>
+									</select>
 								</div>
-								<!-- Mobile number -->
+								<!--Additional Rules-->
 								<div class="col-md-6">
-									<label class="form-label">Mobile number *</label>
-									<input type="text" class="form-control" placeholder="" aria-label="Phone number" value="+91 9852 8855 252">
-								</div>
-								<!-- Email -->
-								<div class="col-md-6">
-									<label for="inputEmail4" class="form-label">Email *</label>
-									<input type="email" class="form-control" id="inputEmail4" value="example@homerealty.com">
-								</div>
-								<!-- Skype -->
-								<div class="col-md-6">
-									<label class="form-label">Skype *</label>
-									<input type="text" class="form-control" placeholder="" aria-label="Phone number" value="Scaralet D">
+									<label class="form-label">Additional Rules</label>
+									<textarea class="form-control" rows="3"></textarea>
 								</div>
 							</div> <!-- Row END -->
 						</div>
 					</div>
 				</div> <!-- Row END -->
 				<!-- button -->
-				<div class="d-flex justify-content-end gap-3 mb-5 mt-4">
-					<button type="submit" class="btn btn-primary btn-lg px-5">Update profile</button>
+				<div class="d-flex justify-content-end gap-3 mb-5 mt-4 pb-5">
+					<button type="submit" class="btn btn-primary btn-lg px-5">Create Unit</button>
 				</div>
 			</form> <!-- Form END -->
 		</div>
