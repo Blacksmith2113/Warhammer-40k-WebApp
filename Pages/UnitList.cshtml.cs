@@ -18,9 +18,14 @@ namespace WebApp.Pages
             .Cast<string>()
             .Distinct()
             .OrderBy(c => _categoryOrder.GetValueOrDefault(c, 99));
-        
+
+        public IEnumerable<Unit> OrderedUnits => Units
+            .OrderBy(u => _categoryOrder.GetValueOrDefault(u.Category ?? "Unknown", 99))    //Operator koalescencji Jezeli jest null to "Unknown", jeżeli nie jest to u.Category czyli nazwa kategorii
+            .ThenBy(u => u.Name);
+
         public void OnGet() {
             Units.Add(new Unit {
+                Id = 4,
                 Name = "Eightbound",
                 Points = 135,
                 Image = "/Images/Eightbound.jpg",
@@ -28,6 +33,7 @@ namespace WebApp.Pages
             });
 
             Units.Add(new Unit {
+                Id = 1,
                 Name = "Angron",
                 Points = 365,
                 Image = "/Images/Angron.jpg",
@@ -35,6 +41,7 @@ namespace WebApp.Pages
             });
 
             Units.Add(new Unit {
+                Id = 3,
                 Name = "Chaos Rhino",
                 Points = 85,
                 Image = "/Images/Rhino.jpg",
@@ -42,6 +49,7 @@ namespace WebApp.Pages
             });
 
             Units.Add(new Unit {
+                Id = 2,
                 Name = "Khorne Berzerkers",
                 Points = 180,
                 Image = "/Images/Berzerkers.jpg",

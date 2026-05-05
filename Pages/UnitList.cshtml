@@ -1,7 +1,5 @@
 ﻿@page "/Units"
 @model WebApp.Pages.UnitListModel
-@{
-}
 <div class="container">
 	<div class="row">
 		<h2>Unit Page</h2>
@@ -10,13 +8,42 @@
 </div>
 <div class="container">
 	<div class="row">
-		@foreach (var category in Model.SortedCategories) 
-		{
-			<p>@category</p>
-			@foreach (var unit in Model.Units.Where(u => u.Category == category))
-			{
-				<span>@unit.Name</span>
-			}
-		}
-	</div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="text-center">#</th>
+                    <th>Name</th>
+                    <th>Points</th>
+                    <th>Category</th>
+                    <th >Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+		    @foreach (var category in Model.SortedCategories) 
+		    {
+			    @foreach (var unit in Model.Units.Where(u => u.Category == category))
+			    {
+                    <tr>
+                        <td class="text-center">@unit.Id</td>
+                        <td>@unit.Name</td>
+                        <td>@unit.Points</td>
+                        <td>@unit.Category</td>
+                        <td class="td-actions text-right">
+                            <button type="button" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="">
+                                <i class="material-icons">person</i>
+                            </button>
+                            <button type="button" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title="">
+                                <i class="material-icons">edit</i>
+                            </button>
+                            <button type="button" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm" data-original-title="" title="">
+                                <i class="material-icons">close</i>
+                            </button>
+                        </td>
+                    </tr>
+			    }
+		    }
+            </tbody>
+        </table>
+    </div>
 </div>
+
