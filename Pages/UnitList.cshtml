@@ -1,9 +1,16 @@
 ﻿@page "/Units"
 @model WebApp.Pages.UnitListModel
 <div class="container">
-	<div class="row">
-		<h2>Unit Page</h2>
-		<p>Here you can view units from your database.</p>
+	<div class="row align-items-end justify-content-between mb-3">
+        <div class="col-auto">
+            <h2>Unit Page</h2>
+		    <p>Here you can view units from your database.</p>
+        </div>
+        <div class="col-auto">
+            <a asp-page="/Create" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" >
+                <i class="material-icons">add</i>
+            </a>
+        </div>
 	</div>
 </div>
 <div class="container">
@@ -11,37 +18,54 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th class="text-center">#</th>
+                    <th class="text-end">#</th>
                     <th>Name</th>
                     <th>Points</th>
                     <th>Category</th>
-                    <th >Actions</th>
+                    <th class="text-right">Actions</th>
                 </tr>
             </thead>
             <tbody>
-		    @foreach (var category in Model.SortedCategories) 
-		    {
-			    @foreach (var unit in Model.Units.Where(u => u.Category == category))
+			    @foreach (var unit in Model.OrderedUnits)
 			    {
                     <tr>
-                        <td class="text-center">@unit.Id</td>
+                        <td class="text-end">@unit.Id</td>
                         <td>@unit.Name</td>
                         <td>@unit.Points</td>
                         <td>@unit.Category</td>
                         <td class="td-actions text-right">
-                            <button type="button" rel="tooltip" class="btn btn-info btn-just-icon btn-sm" data-original-title="" title="">
+                            <button type="button" rel="tooltip" class="btn btn-info btn-just-icon btn-sm">
                                 <i class="material-icons">person</i>
                             </button>
-                            <button type="button" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title="">
+                            <button type="button" rel="tooltip" class="btn btn-success btn-just-icon btn-sm">
                                 <i class="material-icons">edit</i>
                             </button>
-                            <button type="button" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm" data-original-title="" title="">
+                            <button type="button" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal-@unit.Id">
                                 <i class="material-icons">close</i>
                             </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="deleteModal-@unit.Id" tabindex="-1">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title">Confirm Deletion</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                    Are you sure you want to delete <strong>@unit.Name</strong>?
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <form method="post" asp-page-handler="Delete" asp-route-id="@unit.Id">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                         </td>
                     </tr>
 			    }
-		    }
             </tbody>
         </table>
     </div>

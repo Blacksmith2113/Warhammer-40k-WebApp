@@ -7,3 +7,8 @@ $(document).ready(function () {
     $('[data-toggle="tooltip"], [rel="tooltip"]').tooltip();
 
 });
+
+fetch('/Units?handler=Delete&id=1', { method: 'POST' })
+    .then(response => {
+        if (response.ok) document.getElementById('unit-row-1').remove();
+    });
