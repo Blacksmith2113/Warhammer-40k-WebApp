@@ -14,7 +14,7 @@
 				<hr>
 			</div>
 			<!-- Form START -->
-			<form class="file-upload">
+			<form method="post" enctype="multipart/form-data" class="file-upload">
 				<div class="row mb-5 gx-5">
 					<!-- Upload Image -->
 					<div class="col-xxl-4">
@@ -27,7 +27,7 @@
 										<i class="fas fa-fw fa-user position-absolute top-50 start-50 translate-middle text-secondary"></i>
 									</div>
 									<!-- Button -->
-									<input type="file" id="customFile" name="file" hidden="">
+									<input type="file" id="customFile" asp-for="Unit.Image" hidden="">
 									<label class="btn btn-info btn-block " for="customFile">Upload</label>
 									<button type="button" class="btn btn-danger">Remove</button>
 								</div>
@@ -42,28 +42,28 @@
 								<!-- Name -->
 								<div class="col-md-6">
 									<label class="form-label">Name</label>
-									<input type="text" class="form-control" placeholder="" aria-label="First name">
+									<input type="text" asp-for="Unit.Name" class="form-control" placeholder="" aria-label="First name">
 								</div>
 								<!-- Points -->
 								<div class="col-md-6">
 									<label class="form-label">Point Value</label>
-									<input type="text" class="form-control" placeholder="" aria-label="Last name">
+									<input type="text" asp-for="Unit.Points" class="form-control" placeholder="" aria-label="Last name">
 								</div>
 								<!--Category-->
 								<div class="col-md-6">
 									<label class="form-label">Category</label>
-									<select class="form-select">
+									<select class="form-select" asp-for="Unit.Category">
 										<option selected disabled value="">Select Category</option>
-										<option value="1">Character</option>
-										<option value="2">Battleline</option>
-										<option value="3">Dedicated Transport</option>
-										<option value="4">Other Datasheets</option>
+										<option value="Character">Character</option>
+										<option value="Battleline">Battleline</option>
+										<option value="Dedicated Transport">Dedicated Transport</option>
+										<option value="Other Datasheets">Other Datasheets</option>
 									</select>
 								</div>
 								<!--Additional Rules-->
 								<div class="col-md-6">
 									<label class="form-label">Additional Rules</label>
-									<textarea class="form-control" rows="3"></textarea>
+									<textarea asp-for="Unit.Rules" class="form-control" rows="3"></textarea>
 								</div>
 							</div> <!-- Row END -->
 						</div>

@@ -12,23 +12,38 @@ namespace WebApp.Repositories {
         }
 
         public bool Create(Unit e) {
-            return true;
+            bool isCreated = false;
+            dbContext.Units.Add(e);
+            if(dbContext.SaveChanges() == 1) {
+                isCreated = true;
+            }
+            return isCreated;
         }
 
         public List<Unit> ReadAll() {
-            return new List<Unit>();
+            return dbContext.Units.ToList();
         }
 
         public Unit Read(int id) {
-            return new Unit();
+            return dbContext.Units.Find(id) ?? new Unit();
         }
 
         public bool Update(Unit e) {
-            return true;
+            bool isUpdated = false;
+            dbContext.Units.Update(e);
+            if(dbContext.SaveChanges() == 1) {
+                isUpdated = true;
+            }
+            return isUpdated;
         }
                
         public bool Delete(Unit e) {
-            return true;
+            bool isDeleted = false;
+            dbContext.Units.Remove(e);
+            if(dbContext.SaveChanges() == 1) {
+                isDeleted = true;
+            }
+            return isDeleted;
         }
     }
 }
