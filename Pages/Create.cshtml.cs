@@ -17,6 +17,7 @@ namespace WebApp.Pages
         [BindProperty]
         public Unit Unit { get; set; }
 
+        [BindProperty]
         public IFormFile? ImageFile { get; set; }
 
         public void OnGet()

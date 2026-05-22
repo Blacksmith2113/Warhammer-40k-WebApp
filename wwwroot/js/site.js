@@ -12,3 +12,48 @@ fetch('/Units?handler=Delete&id=1', { method: 'POST' })
     .then(response => {
         if (response.ok) document.getElementById('unit-row-1').remove();
     });
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const fileInput = document.getElementById('customFile');
+    const removeBtn = document.getElementById('removeBtn');
+    if (fileInput) {
+        fileInput.addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    const preview = document.getElementById('imagePreview');
+                    const icon = document.getElementById('uploadIcon');
+                    if (preview) {
+                        preview.src = e.target.result;
+                        preview.style.display = 'block';
+                    }
+                    if (icon) {
+                        icon.style.display = 'none';
+                    }
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+    if (removeBtn && fileInput) {
+        removeBtn.addEventListener('click', function () {
+            fileInput.value = "";
+
+            const preview = document.getElementById('imagePreview');
+            const icon = document.getElementById('uploadIcon');
+
+            if (preview) {
+                preview.src = "#";
+                preview.style.display = 'none';
+            }
+
+            if (icon) {
+                icon.style.display = 'block';
+            }
+        });
+    }
+});
+
