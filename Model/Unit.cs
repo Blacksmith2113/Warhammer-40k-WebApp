@@ -1,5 +1,8 @@
-﻿namespace WebApp {
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace WebApp.Model {
     public class Unit {
+        [Key]
         public int Id { get; set; }
         public string? Name { get; set; }
         public int Points { get; set; }
