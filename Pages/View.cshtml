@@ -23,7 +23,27 @@
 								<div class="text-center">
 									<!-- Image -->
 									<div class="square position-relative display-2 mb-3">
-										<i class="fas fa-fw fa-user position-absolute top-50 start-50 translate-middle text-secondary"></i>
+										@{
+											// Sprawdzamy w C#, czy obiekt Unit ma zapisane zdjęcie
+											bool maZdjecie = Model.Unit?.Image != null && Model.Unit.Image.Length > 0;
+											string imageSrc = "#";
+                        
+											if (maZdjecie)
+											{
+												// Konwersja byte[] z bazy danych na Base64
+												string base64 = Convert.ToBase64String(Model.Unit.Image);
+												imageSrc = $"data:image/png;base64,{base64}";
+											}
+										}
+
+										@if (!maZdjecie)
+										{
+											<i class="fas fa-fw fa-user position-absolute top-50 start-50 translate-middle text-secondary"></i>
+										}
+										else
+										{
+											<img src="@imageSrc" alt="@Model.Unit.Name" class="img-fluid w-100 h-100" style="object-fit: cover;" />
+										}
 										<img id="imagePreview" src="#" alt="Unit Preview" class="img-fluid w-100 h-100" style="object-fit: cover; display: none;"/>
 									</div>
 								</div>

@@ -24,12 +24,21 @@
 								<div class="text-center">
 									<!-- Image upload -->
 									<div class="square position-relative display-2 mb-3">
-										<i class="fas fa-fw fa-user position-absolute top-50 start-50 translate-middle text-secondary"></i>
+										@{
+											bool maZdjecie = Model.Unit?.Image != null && Model.Unit.Image.Length > 0;
+											string imageSrc = "#";
+											if (maZdjecie)
+											{
+												string base64 = Convert.ToBase64String(Model.Unit.Image);
+												imageSrc = $"data:image/png;base64,{base64}";
+											}
+										}
+										<img id="imagePreview" src="@imageSrc" alt="Unit Preview" class="img-fluid w-100 h-100" style="object-fit: cover;"/>
 									</div>
 									<!-- Button -->
-									<input type="file" id="customFile" name="file" hidden="">
+									<input type="file" asp-for="Unit.Image" id="customFile" name="file" hidden="">
 									<label class="btn btn-info btn-block " for="customFile">Upload</label>
-									<button type="button" class="btn btn-danger">Remove</button>
+									<button id="removeBtn" type="button" class="btn btn-danger">Remove</button>
 								</div>
 							</div>
 						</div>
@@ -42,28 +51,28 @@
 								<!-- Name -->
 								<div class="col-md-6">
 									<label class="form-label">Name</label>
-									<input type="text" class="form-control" placeholder="" aria-label="First name">
+									<input type="text" asp-for="Unit.Name" class="form-control" aria-label="First name">
 								</div>
 								<!-- Points -->
 								<div class="col-md-6">
-									<label class="form-label">Point Value</label>
-									<input type="text" class="form-control" placeholder="" aria-label="Last name">
+									<label class="form-label">Points</label>
+									<input type="text" asp-for="Unit.Points" class="form-control" aria-label="Last name">
 								</div>
 								<!--Category-->
 								<div class="col-md-6">
 									<label class="form-label">Category</label>
-									<select class="form-select">
+									<select asp-for="Unit.Category" class="form-select">
 										<option selected disabled value="">Select Category</option>
-										<option value="1">Character</option>
-										<option value="2">Battleline</option>
-										<option value="3">Dedicated Transport</option>
-										<option value="4">Other Datasheets</option>
+										<option value="Character">Character</option>
+										<option value="Battleline">Battleline</option>
+										<option value="Dedicated Transport">Dedicated Transport</option>
+										<option value="Other Datasheets">Other Datasheets</option>
 									</select>
 								</div>
 								<!--Additional Rules-->
 								<div class="col-md-6">
 									<label class="form-label">Additional Rules</label>
-									<textarea class="form-control" rows="3"></textarea>
+									<textarea asp-for="Unit.Rules" class="form-control" rows="3"></textarea>
 								</div>
 							</div> <!-- Row END -->
 						</div>
