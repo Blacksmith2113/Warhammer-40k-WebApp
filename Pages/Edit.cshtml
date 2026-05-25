@@ -25,14 +25,15 @@
 									<!-- Image upload -->
 									<div class="square position-relative display-2 mb-3">
 										@{
-											bool maZdjecie = Model.Unit?.Image != null && Model.Unit.Image.Length > 0;
+											bool hasImage = Model.Unit?.Image != null && Model.Unit.Image.Length > 0;
 											string imageSrc = "#";
-											if (maZdjecie)
+											if (hasImage)
 											{
 												string base64 = Convert.ToBase64String(Model.Unit.Image);
 												imageSrc = $"data:image/png;base64,{base64}";
 											}
 										}
+										<i id="uploadIcon" class="fas fa-fw fa-user position-absolute top-50 start-50 translate-middle text-secondary" style="display: none"></i>
 										<img id="imagePreview" src="@imageSrc" alt="Unit Preview" class="img-fluid w-100 h-100" style="object-fit: cover;"/>
 									</div>
 									<!-- Button -->
