@@ -30,9 +30,16 @@ namespace WebApp.Repositories {
 
         public bool Update(Unit e) {
             bool isUpdated = false;
-            dbContext.Units.Update(e);
-            if(dbContext.SaveChanges() == 1) {
-                isUpdated = true;
+            var existing = dbContext.Units.Find(e.Id);
+            if (existing != null) {
+                existing.Name = e.Name;
+                existing.Points = e.Points;
+                existing.Image = e.Image;
+                existing.Category = e.Category;
+                existing.Rules = e.Rules;
+                if (dbContext.SaveChanges() >= 1) {
+                    isUpdated = true;
+                }
             }
             return isUpdated;
         }

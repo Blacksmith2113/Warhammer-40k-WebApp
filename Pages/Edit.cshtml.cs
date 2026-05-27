@@ -25,5 +25,29 @@ namespace WebApp.Pages
         {
             Unit = _unitRepository.Read(id);
         }
+
+        public IActionResult OnPost()
+        {
+            if (ImageFile is not null)
+            {
+                using MemoryStream ms = new MemoryStream();
+                ImageFile.CopyTo(ms);
+                Unit.Image = ms.ToArray();
+            }
+            else
+            { 
+                var existing = _unitRepository.Read(Unit.Id);
+                Unit.Image = existing.Image;
+            }
+
+            if (_unitRepository.Update(Unit))
+            {
+                return RedirectToPage("/UnitList");
+            }
+            else
+            {
+                return Page();
+            }
+        }
     }
 }

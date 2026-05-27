@@ -14,7 +14,8 @@
 				<hr>
 			</div>
 			<!-- Form START -->
-			<form class="file-upload">
+			<form class="file-upload" enctype="multipart/form-data" method="post">
+				<input type="hidden" asp-for="Unit.Id" />
 				<div class="row mb-5 gx-5">
 					<!-- Upload Image -->
 					<div class="col-xxl-4">
@@ -37,7 +38,7 @@
 										<img id="imagePreview" src="@imageSrc" alt="Unit Preview" class="img-fluid w-100 h-100" style="object-fit: cover;"/>
 									</div>
 									<!-- Button -->
-									<input type="file" asp-for="Unit.Image" id="customFile" name="file" hidden="">
+									<input type="file" id="customFile" asp-for="ImageFile" name="ImageFile" hidden>
 									<label class="btn btn-info btn-block " for="customFile">Upload</label>
 									<button id="removeBtn" type="button" class="btn btn-danger">Remove</button>
 								</div>
@@ -81,7 +82,7 @@
 				</div> <!-- Row END -->
 				<!-- button -->
 				<div class="d-flex justify-content-end gap-3 mb-5 mt-4 pb-5">
-					<button type="submit" class="btn btn-primary btn-lg px-5">Edit Unit</button>
+					<button type="submit" class="btn btn-primary btn-lg px-5" >Edit Unit</button>
 				</div>
 			</form> <!-- Form END -->
 		</div>
